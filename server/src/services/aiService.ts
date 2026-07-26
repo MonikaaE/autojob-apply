@@ -310,7 +310,7 @@ Answer should be written in first-person ("I am..."), confident, grounded in can
     const flags: string[] = [];
 
     // Title match check
-    const matchedTitle = userProfile.targetTitles.some(t => textLower.includes(t.toLowerCase()));
+    const matchedTitle = userProfile.targetTitles.some((t: string) => textLower.includes(t.toLowerCase()));
     if (matchedTitle) {
       score += 12;
       pros.push(`Job title matches your target role (${userProfile.targetTitles.slice(0, 2).join(', ')})`);
@@ -328,14 +328,14 @@ Answer should be written in first-person ("I am..."), confident, grounded in can
     }
 
     // Keywords match check
-    const matchedKeywords = userProfile.keywordsInclude.filter(k => textLower.includes(k.toLowerCase()));
+    const matchedKeywords = userProfile.keywordsInclude.filter((k: string) => textLower.includes(k.toLowerCase()));
     if (matchedKeywords.length > 0) {
       score += Math.min(15, matchedKeywords.length * 4);
       pros.push(`Contains key required technologies: ${matchedKeywords.join(', ')}`);
     }
 
     // Excluded keywords check
-    const matchedExcludes = userProfile.keywordsExclude.filter(k => textLower.includes(k.toLowerCase()));
+    const matchedExcludes = userProfile.keywordsExclude.filter((k: string) => textLower.includes(k.toLowerCase()));
     if (matchedExcludes.length > 0) {
       score -= 25;
       flags.push(`Contains excluded term: ${matchedExcludes.join(', ')}`);
