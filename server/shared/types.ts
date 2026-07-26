@@ -1,5 +1,3 @@
-// Inlined from shared/types.ts — keeps the server self-contained for deployment
-
 export interface UserProfile {
   id: string;
   email: string;
