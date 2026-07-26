@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { UserProfile, ParsedCV, ApplicationLog, PipelineProgress, ScheduleConfig } from '@shared/types';
 
-const API_BASE = '/api';
+const API_BASE = `${import.meta.env.VITE_API_URL ?? ''}/api`;
 
 export const api = {
   // Profile & Master CV
