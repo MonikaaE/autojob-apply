@@ -16,11 +16,11 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'https://autojob-apply-production.up.railway.app',
         changeOrigin: true
       },
       '/storage': {
-        target: 'http://localhost:5000',
+        target: 'https://autojob-apply-production.up.railway.app',
         changeOrigin: true
       }
     }
