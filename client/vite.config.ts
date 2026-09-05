@@ -4,6 +4,8 @@ import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 
 // https://vite.dev/config/
+const backendTarget = process.env.VITE_PROXY_TARGET || 'http://localhost:5000';
+
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {
@@ -16,11 +18,11 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'https://autojob-apply-production.up.railway.app',
+        target: backendTarget,
         changeOrigin: true
       },
       '/storage': {
-        target: 'https://autojob-apply-production.up.railway.app',
+        target: backendTarget,
         changeOrigin: true
       }
     }

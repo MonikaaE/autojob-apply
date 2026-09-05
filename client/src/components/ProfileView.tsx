@@ -143,6 +143,28 @@ export const ProfileView: React.FC<ProfileViewProps> = ({ profile, masterCv, onP
                   ))}
                 </div>
               </div>
+
+              {parsedCvData.experience && parsedCvData.experience.length > 0 && (
+                <div>
+                  <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block mb-2">Work Experience & Current Role</span>
+                  <div className="space-y-2">
+                    {parsedCvData.experience.map((exp, idx) => {
+                      const isPresent = !exp.endDate || exp.endDate.toLowerCase().includes('present');
+                      return (
+                        <div key={idx} className="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs">
+                          <div className="flex items-center justify-between font-semibold text-white">
+                            <span>{exp.role}</span>
+                            <span className={`px-2 py-0.5 rounded text-[10px] ${isPresent ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-slate-800 text-slate-400'}`}>
+                              {exp.startDate || '2023'} - {exp.endDate || 'Present'}
+                            </span>
+                          </div>
+                          <div className="text-slate-400 text-[11px] mt-0.5">{exp.company} {exp.location ? `• ${exp.location}` : ''}</div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>
