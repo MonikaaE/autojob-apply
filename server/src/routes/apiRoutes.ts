@@ -368,6 +368,19 @@ router.post('/pipeline/run', async (req: Request, res: Response) => {
   }
 });
 
+router.post('/pipeline/clear-stale', async (req: Request, res: Response) => {
+  try {
+    const db = await getDb();
+    await db.run(`DELETE FROM applications`);
+    await db.run(`DELETE FROM tailored_cvs`);
+    await db.run(`DELETE FROM matches`);
+    await db.run(`DELETE FROM job_listings`);
+    res.json({ message: 'Stale jobs & application history cleared successfully. Ready for fresh live scraping.' });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 router.get('/pipeline/progress', (req: Request, res: Response) => {
   res.json(PipelineService.getProgress());
 });

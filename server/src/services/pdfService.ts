@@ -79,8 +79,9 @@ export class PDFService {
         doc.moveDown(0.4);
 
         for (const exp of parsedCV.experience) {
+          const endDateDisplay = (exp.endDate && exp.endDate.trim()) ? exp.endDate : 'Present';
           doc.fontSize(11).font('Helvetica-Bold').fillColor('#0f172a').text(exp.role, { continued: true });
-          doc.fontSize(10).font('Helvetica-Oblique').fillColor('#64748b').text(` — ${exp.company} (${exp.startDate} - ${exp.endDate})`);
+          doc.fontSize(10).font('Helvetica-Oblique').fillColor('#64748b').text(` — ${exp.company} (${exp.startDate || '2023'} - ${endDateDisplay})`);
           
           if (exp.location) {
             doc.fontSize(9).font('Helvetica').fillColor('#94a3b8').text(exp.location);
